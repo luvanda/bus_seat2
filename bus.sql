@@ -69,7 +69,7 @@ INSERT INTO `bus_layout_record` (`recordID`, `seatName`, `bus_stop`, `busID`) VA
 (3, 'I3', 'gezaulole', 1),
 (4, 'D3', 'kimara', 1),
 (5, 'A1', 'chalinze', 1),
-(6, 'B1', 'kibaha', 1),
+(6, 'B1', 'kibaha22', 1),
 (7, 'C1', 'kibamba', 1);
 
 -- --------------------------------------------------------
