@@ -19,11 +19,14 @@ if($query){
     while($row = mysqli_fetch_assoc($query)){
       $layout = 4;
       //$rows = $row['totalRows'];
-      $totalSeats = $row['totalSeat']-($row['backSeat']+$row['frontSeat']);
+      $id = $row['busID'];
+      $totalSeats = $row['totalSeat'];
       $totalRows = $totalSeats/$layout;
     }
-    echo '<table>
-        <form action="#" method="POST">';
+    echo '
+    <form action="bus_layout_record.php" method="POST">
+    <table>
+        ';
     for($x = 0; $x<$totalRows;$x++){
       echo '<tr>';
       //for($y = 0; $y<)
@@ -31,12 +34,13 @@ if($query){
 
         echo '<td>
               <button class="btn btn-secondary btn-sm">Test</button>
-              <input type="text">
+              <input type="text" name="data">
               </td>';
       }
       echo '</tr>';
     }
     echo '<tr><td><button type="submit" class="btn btn-secondary" name="seatBtn">SUBMIT</button></td></tr>';
-    echo '</form></table>';
+    echo '</table>
+    </form>';
 }
 ?>
