@@ -13,13 +13,18 @@
 </head>
 <?php
 include_once 'connection.php';
+echo '
+<form action="test.php" method="POST">
+<button name="resBtn">RESET</button>
+</form>';
 $sql = "SELECT * FROM seats";
 $query = mysqli_query($conn,$sql);
 
 if($query){
   echo '
-  <table>
-  <tr></tr>
+  <div class="container-fluid">
+  <table class="table table-sm">
+  
   <div class="row">';
         
 
@@ -27,18 +32,21 @@ if($query){
     echo '
     <form method="POST" action="test.php"> 
     <div class="col-md-3">
-    <div class="card">
+    <div class="card border-0 p-2">
     <div>
-    <button disabled>'.$row['name'].'</button>';
+    <button class="btn btn-secondary btn-sm" name="seat" disabled>'.$row['name'].'</button>';
     if($row['status']!='empty'){
-      echo '<input type="hidden" name="seatID" value="'.$row['ID'].'">
-      <input type="text" name="life" value="'.$row['status'].'" disabled>
-      <button type="submit" name="bookBtn" disabled>Book</button>';
+      echo '
+      <input type="hidden" name="seatID" value="'.$row['ID'].'">
+      <input type="hidden" name="seat" value="'.$row['name'].'">
+      <input type="text" class="form-control-sm" name="life" value="'.$row['status'].'" disabled>
+      <button type="submit" class="btn btn-sm btn-secondary" name="bookBtn" disabled>Booked</button>';
     }
     else{
       echo '<input type="hidden" name="seatID" value="'.$row['ID'].'">
-      <input type="text" name="life" value="'.$row['status'].'">
-      <button data-toggle="modal"  type="submit" name="bookBtn">Book</button>';
+      <input type="hidden" name="seat" value="'.$row['name'].'">
+      <input type="text" class="form-control-sm" name="life" value="'.$row['status'].'">
+      <button class="btn btn-sm btn-primary"   type="submit" name="bookBtn">Book</button>';
     }
      echo ' 
     </div>
@@ -47,6 +55,7 @@ if($query){
     </form>';
   }
   echo '</div>
+  </table>
   </table>';
 }
 ?>
